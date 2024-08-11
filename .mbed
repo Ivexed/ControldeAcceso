@@ -1,0 +1,5 @@
+ROOT=.
+TARGET=NUCLEO_F401RE
+TARGET_CODE=0720
+DEVICE_ID[/home/studio/workspace/ControlAcceso_V1]=066CFF535455886687144311
+DEVICE_TYPE[/home/studio/workspace/ControlAcceso_V1]=connected

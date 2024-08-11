@@ -4,12 +4,13 @@
 
 //=====[Defines]===============================================================
 
-#define LDR_LEVEL            0.5
-#define MAX_COMBINATION_SIZE 4 // Tamaño máximo de la combinación de botones
-#define TIME_INCREMENT_MS    20
-#define TIME_DEBOUNCES_MS    120
-#define TIME_BUZZER_MS       200
-#define TIME_MAX_BLINKING_MS 600   
+#define MAX_COMBINATION_SIZE 4      // Tamaño máximo de la combinación de botones
+#define TIME_INCREMENT_MS    20     //tiempo de incremento del sistema
+#define TIME_DEBOUNCES_MS    120    //tiempo de antirrebote
+#define TIME_MAX_BLINKING_MS 600    //tiempo para el parpadeo de led
+#define LDR_LEVEL            0.5    // Valor de referencia para el nivel del LDR
+#define LDR_THRESHOLD_ON     0.4    // Umbral para encender la lámpara
+#define LDR_THRESHOLD_OFF    0.6    // Umbral para apagar la lámpara
 
 //================ Object declaration ============================
 
@@ -33,7 +34,10 @@ int     tryNumber = 0; // variable para contar el número de intentos
 char    combination[MAX_COMBINATION_SIZE + 1]; // Añadimos un espacio adicional para el caracter nulo
 char    input_combination[MAX_COMBINATION_SIZE + 1]; // Añadimos un espacio adicional para el caracter nulo
 float   LDR_value; // variable para almacenar el valor del LDR
-int     acumulatedTime = 0;
+int     acumulatedTime = 0; 
+int     buzzerAccumulatedTime = 0;
+static bool    buzzerState = OFF;
+static int     buzzerTimeOn;
 
 //===== Declaraciones (prototipos) de funciones ==========================
 void uart_init();
@@ -46,6 +50,7 @@ void passSet();
 
 void serial_print(const char* str);
 void ldrTask();
+void buzzerTask();
 
 //=============== Global init ======================
 // Inicializo la UART
@@ -82,6 +87,7 @@ int main() {
         passSet();
         comparedKey();
         ldrTask();
+        buzzerTask();
         thread_sleep_for(TIME_INCREMENT_MS);
     }
 }
@@ -89,6 +95,19 @@ int main() {
 //=====[Implementations of public functions]===================================
 void serial_print(const char* str) {
     serial_port.write(str, strlen(str));
+}
+
+void buzzerTask() { 
+    buzzerAccumulatedTime = buzzerAccumulatedTime + TIME_INCREMENT_MS;
+    if (buzzerState) {
+        buzzer = ON;
+        buzzerAccumulatedTime += TIME_INCREMENT_MS;
+        if (buzzerAccumulatedTime >= buzzerTimeOn) {
+            buzzer = OFF;
+            buzzerAccumulatedTime = 0;
+            buzzerTimeOn = 0;
+        }
+    }
 }
 
 void buttonTask(char* comb) {
@@ -134,30 +153,20 @@ void buttonTask(char* comb) {
 
 void passSet() {
     static bool clavePin = false;
-    static int buzzerTime = 0; // Inicializa buzzerTime
-
     if (!clavePin) {
         serial_print("Ingrese la combinación de botones (usando 1, 2, 3, 4):\n");
         buttonTask(combination);
         clavePin = true;
-        buzzer = ON;
+        buzzerState = ON;
+        buzzerTimeOn = 100;  // Configuración del tiempo del buzzer a 100 ms
         serial_print("\nCombinación almacenada: ");
         serial_print(combination);
         serial_print("\n");
-    }
-
-    if (clavePin) {
-        buzzerTime += TIME_INCREMENT_MS;
-        if (buzzerTime >= TIME_BUZZER_MS && buzzer == ON) {
-            buzzerTime = 0;
-            buzzer = OFF;
-        }
     }
 }
 
 void comparedKey() {
     acumulatedTime += TIME_INCREMENT_MS;
-    static int buzzerAccumulatedTime = 0; // Inicializa buzzerAccumulatedTime
 
     if (!enterButton) {
         if (systemState == ON) {
@@ -172,22 +181,24 @@ void comparedKey() {
             if (systemState == ON) {
                 serial_print("¡Combinación correcta! Sistema desbloqueado.\n");
                 systemState = OFF;
-                buzzer = ON;
-                buzzerAccumulatedTime = 0;
+                buzzerState = ON;
+                buzzerTimeOn = 300;  // Configuración del tiempo del buzzer
             } else {
                 serial_print("¡Combinación correcta! Sistema bloqueado.\n");
                 systemState = ON;
+                buzzerState = ON;
+                buzzerTimeOn = 300;  // Configuración del tiempo del buzzer
             }
             tryNumber = 0; // Resetear el contador de intentos fallidos
         } else {
             tryNumber++;
             if (tryNumber >= 3) {
                 serial_print("¡Sistema bloqueado por demasiados intentos fallidos!\n");
-                buzzer = ON;
-                buzzerAccumulatedTime = 0;
+                buzzerState = ON;
+                buzzerTimeOn = 600;  // Configuración del tiempo del buzzer
             } else {
-                buzzer = ON;
-                buzzerAccumulatedTime = 0;    
+                buzzerState = ON;
+                buzzerTimeOn = 500;  // Configuración del tiempo del buzzer
                 serial_print("Combinación incorrecta: ");
                 serial_print(input_combination);
                 serial_print("\nIntentos restantes: ");
@@ -198,14 +209,6 @@ void comparedKey() {
         }
     }
 
-    if (buzzer == ON) {
-        buzzerAccumulatedTime += TIME_INCREMENT_MS;
-        if (buzzerAccumulatedTime >= TIME_BUZZER_MS) {
-            buzzer = OFF;
-            buzzerAccumulatedTime = 0;
-        }
-    }
-
     if (acumulatedTime >= TIME_MAX_BLINKING_MS && systemState) {
         systemLed = !systemLed;
         acumulatedTime = 0;
@@ -213,10 +216,10 @@ void comparedKey() {
 }
 
 void ldrTask() {
-    float ldrValue = LDR.read(); // Leer el valor analógico del LDR (0.0 a 1.0)
-    if (ldrValue > LDR_LEVEL) {
-        lamp = OFF;
-    } else {
-        lamp = ON;
+    LDR_value = LDR.read(); // Lee el valor analógico del LDR
+    if (LDR_value > LDR_THRESHOLD_OFF) {
+        lamp = OFF;  // Apagar el foco si el valor del LDR es mayor que el umbral de apagado
+    } else if (LDR_value < LDR_THRESHOLD_ON) {
+        lamp = ON;  // Encender el foco si el valor del LDR es menor que el umbral de encendido
     }
 }

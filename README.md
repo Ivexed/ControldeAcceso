@@ -1,4 +1,4 @@
-### Selección del Proyecto a Implementar
+## Selección del Proyecto a Implementar
 
 Para la selección del proyecto final de este curso, se inició con la identificación de diversas opciones que fueron evaluadas mediante un análisis detallado basado en criterios cuantitativos. Se desarrolló una tabla comparativa donde cada proyecto fue valorado según factores clave a los que se asignaron ponderaciones específicas: facilidad y tiempo de implementación (alto), disponibilidad y costo del hardware (medio) y utilidad o relevancia del proyecto (medio).
 
@@ -21,7 +21,7 @@ Este enfoque permitió seleccionar el proyecto que mejor equilibraba los diferen
 
 En la Tabla 1 se aprecia una comparativa de los pesos de tres proyectos propuestos. El proyecto con más peso final es el que resultará elegido como trabajo final.
 
-| Proyecto                  | Tiempo de Implementación (10) | Aporte de nuevos Conocimientos (8) | Utilidad del Proyecto (7) | Disponibilidad y Costo del Hardware (5) | Peso Final |
+| Proyecto                  | | | Tiempo de Implementación (10) | Aporte de nuevos Conocimientos (8) | Utilidad del Proyecto (7) | Disponibilidad y Costo del Hardware (5) | Peso Final |
 |---------------------------|-------------------------------|-------------------------|---------------------------|------------------------------------------|------------|
 | **Sistema de Control de Acceso**  | Puntaje        | 9                         | 8                         | 8                         | 7                                        |            |
 |                           | Puntaje Ponderado            | 90                        | 64                        | 56                        | 35                                       | **245**    |

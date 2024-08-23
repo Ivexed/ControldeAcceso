@@ -55,6 +55,7 @@ En el mercado existen controles de acceso que pueden presentar otras caracterist
 | **Temperatura de Funcionamiento**     | -20º C – 60º C                                     | 0º C - 60º C                                           |
 | **Conexión a Cerradura**              | Eléctrica, pestillo, pulsador de salida            | Electromagnéticas, eléctricas o cerrojos eléctricos   |
 | **Indicadores**                       | Lumínicos y sonoros                                | LED y BUZZER          
+
 *Tabla 2: Comparacion de productos comerciales*
 
 Aunque los controles de acceso comerciales, como los que se muestran en la tabla, ofrecen la opción de utilizar RFID además del teclado, este proyecto no incluye esa característica debido a la falta del módulo RFID. Además, se trata de un prototipo desarrollado en un contexto académico.
@@ -72,12 +73,14 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | 006                     | Activación de una lámpara.                                       | Ilumina las teclas en caso de oscuridad, utilizando un relé para encender la lámpara basada en el LDR. |
 | 007                     | Mostrar información en un display LCD.                           | Muestra la hora actual, el estado de la lámpara (encendida o apagada), y el estado general del sistema.|
 | 008                     | Conexión a una cerradura eléctrica, pestillo o pulsador de salida.| Permite la integración con diferentes tipos de mecanismos de cierre. 
+
+
 *Tabla 3: Tabla de funciones del control de acceso*
 
 
 
 ## Casos de Uso
-#  Caso de Uso 1: Desbloqueo de la Puerta con PIN
+###  Caso de Uso 1: Desbloqueo de la Puerta con PIN
 
 | **Elemento de Caso de Uso** | **Definición**                                                                                                        |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -86,7 +89,7 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | **Flujo Básico**            | 1. El usuario introduce el PIN en el teclado. <br> 2. El sistema valida el PIN. <br> 3. Si el PIN es correcto, el sistema activa el relé para desbloquear la puerta. <br> 4. El sistema enciende el LED indicador de acceso y emite un sonido de confirmación. |
 | **Flujo Alternativo**       | 1. Si el PIN es incorrecto, el sistema enciende el LED indicador de error y emite un sonido de error. <br> 2. El usuario puede intentar ingresar el PIN nuevamente. <br> 3. Si se superan los intentos permitidos, el sistema activa una alarma de bloqueo. |
 
-#  Caso de Uso 2: Visualización del Estado del Sistema en el LCD
+###  Caso de Uso 2: Visualización del Estado del Sistema en el LCD
 
 | **Elemento de Caso de Uso** | **Definición**                                                                                                        |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------|
@@ -96,7 +99,7 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | **Flujo Alternativo**       | No aplicable, ya que la visualización en el LCD es un proceso de consulta simple y continuo sin flujos alternativos. |
 
 
-#  Caso de Uso 3: Activación de la Lámpara en Caso de Oscuridad
+###  Caso de Uso 3: Activación de la Lámpara en Caso de Oscuridad
 
 | **Elemento de Caso de Uso** | **Definición**                                                                                                        |
 |-----------------------------|----------------------------------------------------------------------------------------------------------------------|

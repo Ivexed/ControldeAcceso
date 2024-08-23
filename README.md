@@ -77,7 +77,8 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 
 
 *Tabla 3: Tabla de funciones del control de acceso*
-
+## Esquema Basico de conexion :
+![Esquema general de conexion](https://github.com/Ivexed/ControldeAcceso/blob/TP-Final/data/Captura%20de%20pantalla%202024-08-22%20231232.png)
 
 
 ## Casos de Uso

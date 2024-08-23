@@ -21,14 +21,15 @@ Este enfoque permitió seleccionar el proyecto que mejor equilibraba los diferen
 
 En la Tabla 1 se aprecia una comparativa de los pesos de tres proyectos propuestos. El proyecto con más peso final es el que resultará elegido como trabajo final.
 
-| Proyecto                  | | | Tiempo de Implementación (10) | Aporte de nuevos Conocimientos (8) | Utilidad del Proyecto (7) | Disponibilidad y Costo del Hardware (5) | Peso Final |
-|---------------------------|-------------------------------|-------------------------|---------------------------|------------------------------------------|------------|
-| **Sistema de Control de Acceso**  | Puntaje        | 9                         | 8                         | 8                         | 7                                        |            |
-|                           | Puntaje Ponderado            | 90                        | 64                        | 56                        | 35                                       | **245**    |
-| **Sistema de Monitoreo de Temperatura y Humedad** | Puntaje        | 7                         | 9                         | 8                         | 8                                        |            |
-|                           | Puntaje Ponderado            | 70                        | 72                        | 56                        | 40                                       | **238**    |
-| **Alarma de Seguridad con Detección de Movimiento** | Puntaje        | 7                         | 8                         | 7                         | 9                                        |            |
-|                           | Puntaje Ponderado            | 70                        | 64                        | 49                        | 45                                       | **228**    |
+| Proyecto                                            |                                 |   Tiempo de Implementación (10) | Aporte de nuevos Conocimientos (8) | Utilidad del Proyecto (7) | Disponibilidad y Costo del Hardware (5) | Peso Final |
+|-----------------------------------------------------|-------------------------------|----------------------------------|-------------------------------------|--------------------------|------------------------------------------|------------|
+| **Sistema de Control de Acceso**                    | Puntaje                        | 9                               | 8                                   | 8                        | 7                                        |            |
+|                                                     | Puntaje Ponderado              | 90                              | 64                                  | 56                       | 35                                       | **245**    |
+| **Sistema de Monitoreo de Temperatura y Humedad**   | Puntaje                        | 7                                | 9                                   | 8                        | 8                                        |            |
+|                                                     | Puntaje Ponderado              | 70                               | 72                                  |  56                      | 40                                       | **238**    |
+| **Alarma de Seguridad con Detección de Movimiento** | Puntaje                        | 7                                | 8                                   | 7                        | 9                                        |            |
+|                                                     | Puntaje Ponderado              | 70                               | 64                                  | 49                       | 45                                       | **228**    |
+
 *Tabla 1: Puntajes ponderados de los proyectos para trabajo final*
 
 En este caso el Sustema de control de Acceso es el cual lleva la delantera ya que es el mas viable en terminos de tiempo de implementacion para el mismo en el marco del curso. El sistema de monitoreo de Temperatura y Humedad requeriria un timepo algo mayor debido a que se deben estudiar los sensores qu este sistema implementaria, ademas de necesitar hardware adecuado. Respecto al sistema de alarma de seguridad con deteccion de movimiento, si bien en este caso el hardware esta disponible, se deberia al igual que en el caso anterior estudiar las necesidades de software para implementar lo que demandaria mas tiempo, del disponible.

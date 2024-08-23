@@ -1,6 +1,12 @@
+# Trabajo Practico Final
+
+## Definicion de Requisitos y casos de uso para Curso de Sistemas Embebidos
+### Alumno: Sosa Capelli Gabriel Ivan
+
+
 ## Selección del Proyecto a Implementar
 
-Para la selección del proyecto final de este curso, se inició con la identificación de diversas opciones que fueron evaluadas mediante un análisis detallado basado en criterios cuantitativos. Se desarrolló una tabla comparativa donde cada proyecto fue valorado según factores clave a los que se asignaron ponderaciones específicas: facilidad y tiempo de implementación (alto), disponibilidad y costo del hardware (medio) y utilidad o relevancia del proyecto (medio).
+Para la selección del proyecto final de este curso, se inició con la identificación de diversas opciones que fueron evaluadas mediante un análisis detallado basado en criterios cuantitativos. Se desarrolló una tabla comparativa donde cada proyecto fue valorado según factores clave a los que se asignaron ponderaciones específicas: facilidad y tiempo de implementación (alto), disponibilidad y costo del hardware (medio), aporte de nuevos conocimientos para el desarrollador (medio) y utilidad o relevancia del proyecto (medio).
 
 Cada factor recibió una puntuación del 1 al 10, siendo el valor 10 indicando la máxima favorabilidad. Las ponderaciones fueron calculadas considerando dos dimensiones principales: primero, la conveniencia y factibilidad del proyecto dentro del marco del curso, y segundo, el impacto y valor potencial del proyecto tras su finalización.
 
@@ -23,12 +29,12 @@ En la Tabla 1 se aprecia una comparativa de los pesos de tres proyectos propuest
 
 | Proyecto                                            |                                 |   Tiempo de Implementación (10) | Aporte de nuevos Conocimientos (8) | Utilidad del Proyecto (7) | Disponibilidad y Costo del Hardware (5) | Peso Final |
 |-----------------------------------------------------|-------------------------------|----------------------------------|-------------------------------------|--------------------------|------------------------------------------|------------|
-| **Sistema de Control de Acceso**                    | Puntaje                        | 9                               | 8                                   | 8                        | 7                                        |            |
-|                                                     | Puntaje Ponderado              | 90                              | 64                                  | 56                       | 35                                       | **245**    |
-| **Sistema de Monitoreo de Temperatura y Humedad**   | Puntaje                        | 7                                | 9                                   | 8                        | 8                                        |            |
-|                                                     | Puntaje Ponderado              | 70                               | 72                                  |  56                      | 40                                       | **238**    |
-| **Alarma de Seguridad con Detección de Movimiento** | Puntaje                        | 7                                | 8                                   | 7                        | 9                                        |            |
-|                                                     | Puntaje Ponderado              | 70                               | 64                                  | 49                       | 45                                       | **228**    |
+| **Sistema de Control de Acceso**                    | Puntaje                        | 9                               | 8                                   | 8                        | 6                                        |            |
+|                                                     | Puntaje Ponderado              | 90                              | 64                                  | 56                       | 30                                       | **240**    |
+| **Sistema de Monitoreo de Temperatura y Humedad**   | Puntaje                        | 7                                | 8                                   | 4                        | 8                                        |            |
+|                                                     | Puntaje Ponderado              | 70                               | 64                                  |  28                      | 40                                       | **202**    |
+| **Alarma de Seguridad con Detección de Movimiento** | Puntaje                        | 7                                | 8                                   | 9                        | 4                                       |            |
+|                                                     | Puntaje Ponderado              | 70                               | 64                                  | 63                       | 20                                       | **217**    |
 
 *Tabla 1: Puntajes ponderados de los proyectos para trabajo final*
 
@@ -77,9 +83,12 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 
 
 *Tabla 3: Tabla de funciones del control de acceso*
-## Esquema Basico de conexion :
-![Esquema general de conexion](https://github.com/Ivexed/ControldeAcceso/blob/TP-Final/data/Captura%20de%20pantalla%202024-08-22%20231232.png)
+## Diagrama General:
 
+A continuación se presenta el diagrama general de los bloques que componen el sistema de control de acceso.
+![Diagrama General](data/diagram.png)
+
+*Figura 1 - Diagrama general*
 
 ## Casos de Uso
 ###  Caso de Uso 1: Desbloqueo de la Puerta con PIN
@@ -91,6 +100,8 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | **Flujo Básico**            | 1. El usuario introduce el PIN en el teclado. <br> 2. El sistema valida el PIN. <br> 3. Si el PIN es correcto, el sistema activa el relé para desbloquear la puerta. <br> 4. El sistema enciende el LED indicador de acceso y emite un sonido de confirmación. |
 | **Flujo Alternativo**       | 1. Si el PIN es incorrecto, el sistema enciende el LED indicador de error y emite un sonido de error. <br> 2. El usuario puede intentar ingresar el PIN nuevamente. <br> 3. Si se superan los intentos permitidos, el sistema activa una alarma de bloqueo. |
 
+*Tabla 4 - casos de uso 1*
+
 ###  Caso de Uso 2: Visualización del Estado del Sistema en el LCD
 
 | **Elemento de Caso de Uso** | **Definición**                                                                                                        |
@@ -100,6 +111,7 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | **Flujo Básico**            | 1. El usuario accede al sistema. <br> 2. El sistema muestra en el LCD la hora actual. <br> 3. El sistema indica el estado de la lámpara (encendida o apagada). <br> 4. El sistema informa si está activo o inactivo. |
 | **Flujo Alternativo**       | No aplicable, ya que la visualización en el LCD es un proceso de consulta simple y continuo sin flujos alternativos. |
 
+*Tabla 5 - casos de uso 2*
 
 ###  Caso de Uso 3: Activación de la Lámpara en Caso de Oscuridad
 
@@ -109,3 +121,5 @@ Aunque los controles de acceso comerciales, como los que se muestran en la tabla
 | **Precondición**            | El sensor LDR está conectado y funcionando correctamente.                                                             |
 | **Flujo Básico**            | 1. El sistema lee el valor del sensor LDR. <br> 2. Si el sensor indica oscuridad, el sistema activa el relé para encender la lámpara. <br> 3. La lámpara se enciende y proporciona iluminación adicional. |
 | **Flujo Alternativo**       | 1. Si el sensor LDR indica que hay suficiente luz, la lámpara permanece apagada. <br> 2. El sistema continúa monitoreando la luz ambiente sin cambiar el estado de la lámpara. |
+
+*Tabla 6 - casos de uso 3*

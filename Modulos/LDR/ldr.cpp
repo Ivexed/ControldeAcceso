@@ -20,8 +20,8 @@ float LDR_value; // Variable para almacenar el valor del LDR
 
 // Inicialización de la lámpara
 void ldrInit() {
-    lamp = OFF;
-    setLampState(false);
+    lamp = ON;
+    setLampState(true);
     setChanged(true);
 }
 
@@ -46,21 +46,21 @@ void ldrTask() {
     LDR_value = LDR.read();  // Leer el valor del LDR actual
     static bool lampb = true;  // Estado previo de la lámpara
 
-    // Mantener la lógica de control de la lámpara
-    if(LDR_value > LDR_THRESHOLD_OFF) {
-        lamp = OFF;
-        setLampState(false);  // Actualizar el estado de la lámpara en la variable global
-    } else if (LDR_value < LDR_THRESHOLD_ON) {
-        lamp = ON;
-        setLampState(true);   // Actualizar el estado de la lámpara en la variable global
-    }
-
     // Comparar el estado actual de la lámpara con el anterior para detectar un cambio
     if (getLampState() != lampb) {
         setChanged(true);  // Indicar que ha habido un cambio de estado
-        lampb = getLampState();  // Actualizar el estado previo de la lámpara
-    } else {
+        lampb = getLampState();  // Actualizar el estado previo de la lámpara  
+    }else {
         setChanged(false);  // No hubo cambio, mantener el flag en false
+    }
+    
+    // Mantener la lógica de control de la lámpara
+    if(LDR_value > LDR_THRESHOLD_OFF) {
+        lamp = ON;
+        setLampState(false);  // Actualizar el estado de la lámpara en la variable global
+    } else if (LDR_value < LDR_THRESHOLD_ON) {
+        lamp = OFF;
+        setLampState(true);   // Actualizar el estado de la lámpara en la variable global
     }
 }
 

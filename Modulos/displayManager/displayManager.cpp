@@ -37,8 +37,9 @@ void interfaceDisplayInit() {
 
 // Función para actualizar el display según el estado
 void interfaceDisplayUpdate() {
+
     displayRealTimeClock();
-    showLdrState(getLampState());
+
     if (!needsUpdate) {
         return;
     }
@@ -87,7 +88,7 @@ void updateDisplayState(displayState_t newState) {
 // Comprobar las condiciones para cambiar el estado del display
 void checkDisplayConditions() {
     backlight();
-    //showLdrState(getLampState());
+    showLdrState(getLampState());
     if (isChangingCombination()) {
         updateDisplayState(DISPLAY_STATE_SHOW_CHANGING);
     } else if (isAwaitingInput()) {
